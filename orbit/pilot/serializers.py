@@ -1,6 +1,16 @@
 from rest_framework import serializers
 from .models import Pilot, LANGUAGE_CHOICES, STYLE_CHOICES
+from django.contrib.auth.models import User
 
+
+class UserSerializer(serializers.ModelSerializer):
+    pilot = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Pilot.objects.all())
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'pilot']
+        owner = serializers.ReadOnlyField(source='owner.username')
 
 class PilotSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
@@ -11,6 +21,7 @@ class PilotSerializer(serializers.Serializer):
     language = serializers.ChoiceField(
         choices=LANGUAGE_CHOICES, default='python')
     style = serializers.ChoiceField(choices=STYLE_CHOICES, default='friendly')
+    owner = serializers.ReadOnlyField(source='owner.username')
 
     def create(self, validated_data):
         """

@@ -1,0 +1,73 @@
+version: 1.0.{build}
+skip_non_tags: true
+configuration:
+- Debug
+- Release
+platform: x64
+clone_depth: 6
+init:
+- cmd: >-
+    - cmd: "echo TESTING-WITH %PYTHON_DIR%, %PYTHON%"
+
+    - cmd: "%PYTHON_DIR%\\python.exe --version"
+
+    - cmd: "%PYTHON% --version"
+
+    - cmd: "echo CD=%CD%"
+
+    - cmd: "echo PYTHONPATH=%PYTHONPATH%"
+
+    - cmd: set
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+environment:
+  PYTHONPATH: ".;%CD%"
+  BEHAVE_ROOTDIR_PREFIX: "C:"
+  global:
+  CMD_IN_ENV: 'cmd /E:ON /V:ON /C .\tools\appveyor\run_with_env.cmd'
+  PYTHON_TOKEN:
+      #//secure: hNorKC0ZG2MdYxyGDiHwVrsB45vIupeSNVpdJ5q0jdEzdyCPi/Y7n1zMjYyqZ2co
+  PROJECT_NAME: PyPull
+  GITHUB_REPO_NAME: adamkeinan/PyPull
+  matrix:
+    - PYTHON_DIR: C:\Program Files\Python\Python37
+      PYTHON: C:\Program Files\Python\Python37\python.exe
+    - PYTHON_DIR: C:\Python39
+      PYTHON: C:\Python39\python.exe
+      BEHAVE_ROOTDIR_PREFIX: "c:"
+services: mysql
+hosts:
+  localhost: 127.0.0.1
+# -- TEMPORARILY DISABLED: Python variants discovery
+#    - cmd: "@echo AVAILABLE PYTHON VERSIONS"
+#    - cmd: "@dir C:\Python*"
+#    - path
+
+install:
+- cmd: >-
+    - cmd: "%PYTHON_DIR%\\python.exe -m pip install pytest mock PyHamcrest nose"
+
+    - cmd: "%PYTHON_DIR%\\python.exe -m pip install ."
+
+    - cmd: "%PYTHON_DIR%\\python.exe bin/explore_platform_encoding.py"
+
+build:
+  verbosity: minimal
+test_script:
+- cmd: >-
+    - cmd: "build.cmd %PYTHON%\\python.exe setup.py test"
+
+    - cmd: "%PYTHON_DIR%\\Scripts\\pytest.exe test tests"
+
+    - cmd: "%PYTHON_DIR%\\Scripts\\behave.exe -f progress3 --junit features"
+
+    - cmd: "%PYTHON_DIR%\\Scripts\\behave.exe -f progress3 --junit issue.features"
+
+#on_success:
+#  You can use this step to upload your artifacts to a public website.
+#  See Appveyor's documentation for more details. Or you can simply
+#  access your wheels from the Appveyor "artifacts" tab for your build.

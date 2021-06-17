@@ -1,6 +1,8 @@
 # PyPull
 Pull data from an API using Python
 
+[![Build status](https://ci.appveyor.com/api/projects/status/bn94b6e9fvpa20br/branch/development?svg=true)](https://ci.appveyor.com/project/adamkeinan/pypull/branch/development)
+
 # Quickstart
 
 ## Create the project directory
@@ -29,7 +31,7 @@ Add your Applicatione and Rest_Framework to the 'INSTALLED_APPS' settings.py fil
 ## Now That The Project Structure Has Been Created Run:
 $ python manage.py migrate
 
-### Once Migrating Your Python Module Files Run: 
+### Once Migrating Your Python Module Files Run:
 $ python manage.py runserver
 
 ## You can also interact with the API using command line tools such as curl

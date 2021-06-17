@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -ev
+
+# Install python to avoid compiling scipy
+if test -e $HOME/python/bin ; then
+    echo "miniconda already installed."
+else
+    echo "Installing python."
+    rm -rf $HOME/python
+    mkdir -p $HOME/download
+    if [[ -d $HOME/download/python.sh ]] ; then rm -rf $HOME/download/miniconda.sh ; fi
+    if [ "${MYPYTHONPY}" = "3.7" ]; then
+      if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+         - sudo apt install python3.9
+         - python -m install pip
+      fi;
+    fi
+
+    bash $HOME/download/miniconda.sh -b -p $HOME/python
+fi

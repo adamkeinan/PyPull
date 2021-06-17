@@ -1,10 +1,12 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from pilot import views
+from . import views
 
 urlpatterns = [
-    path('pilot/', views.pilot_list),
-    path('pilot/<int:pk>/', views.pilot_detail),
+    path('pilot/', views.PilotList.as_view()),
+    path('pilot/<int:pk>/', views.PilotDetail.as_view()),
+    path('users/', views.UserList.as_view()),
+    path('users/<int:pk>/', views.UserDetail.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
