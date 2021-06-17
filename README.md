@@ -3,6 +3,15 @@ Pull data from an API using Python
 
 [![Build status](https://ci.appveyor.com/api/projects/status/bn94b6e9fvpa20br/branch/development?svg=true)](https://ci.appveyor.com/project/adamkeinan/pypull/branch/development)
 
+![GitHub last commit](https://img.shields.io/github/last-commit/adamkeinan/PyPull)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/adamkeinan/PyPull)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Django)
+![PyPI](https://img.shields.io/pypi/v/pip)
+![PyPI](https://img.shields.io/pypi/v/flake8)
+![PyPI](https://img.shields.io/pypi/v/mypy)
+![PyPI](https://img.shields.io/pypi/v/pylint)
+![PyPI - Django Version](https://img.shields.io/pypi/djversions/djangorestframework)
+![PyPI](https://img.shields.io/pypi/v/Django)
 # Quickstart
 
 ## Create the project directory
