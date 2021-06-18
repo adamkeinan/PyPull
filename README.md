@@ -1,5 +1,11 @@
 # PyPull
-Pull data from an API using Python
+ Pull and Post Information from an Public API or a Site using Python
+
+# On This Project I Will be mainly Use The Following Python Modules:
+- Django
+- Djangorestframework
+- Beautifulsoup
+- Requests
 
 [![Build status](https://ci.appveyor.com/api/projects/status/bn94b6e9fvpa20br/branch/development?svg=true)](https://ci.appveyor.com/project/adamkeinan/pypull/branch/development)
 
@@ -35,7 +41,7 @@ $ cd ..
 $ python manage.py createsuperuser --email admin@example.com --username admin
 
 ## Declare your Django Apps
-Add your Applicatione and Rest_Framework to the 'INSTALLED_APPS' settings.py file
+- Add your Applicatione and Rest_Framework to the 'INSTALLED_APPS' settings.py file
 
 ## Now That The Project Structure Has Been Created Run:
 $ python manage.py migrate
